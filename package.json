@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "next build",
-    "dev": "next dev",
+    "build": "next build --webpack",
+    "dev": "next dev --experimental-https",
+    "dev:http": "next dev",
     "lint": "next lint",
     "start": "next start",
     "preview": "next build && next start",
@@ -40,6 +41,7 @@
     "@radix-ui/react-toggle": "1.1.1",
     "@radix-ui/react-toggle-group": "1.1.1",
     "@radix-ui/react-tooltip": "1.1.6",
+    "@serwist/next": "^9.5.6",
     "@vercel/analytics": "1.3.1",
     "autoprefixer": "^10.4.20",
     "class-variance-authority": "^0.7.1",
@@ -62,6 +64,7 @@
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
     "vaul": "^1.1.2",
+    "web-push": "^3.6.7",
     "zod": "3.25.67"
   },
   "devDependencies": {
@@ -69,9 +72,11 @@
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/service-worker-mock": "^2.0.4",
+    "@types/web-push": "^3.6.4",
     "postcss": "^8.5",
     "tailwindcss": "^4.1.9",
     "tw-animate-css": "1.3.3",
-    "typescript": "^5"
+    "typescript": "^5.9.3"
   }
 }

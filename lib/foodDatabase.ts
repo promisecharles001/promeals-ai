@@ -3,7 +3,7 @@
  * All values are per 100g serving unless otherwise specified
  */
 
-import { FoodDatabaseEntry } from '@/types';
+import { FoodDatabaseEntry, FoodItem } from '@/types';
 
 export const foodDatabase: FoodDatabaseEntry[] = [
   // Proteins

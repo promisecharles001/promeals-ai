@@ -1,12 +1,14 @@
 import { NextResponse } from "next/server"
 import webpush from "web-push"
 
-// Configure VAPID
-webpush.setVapidDetails(
-  "mailto:support@promeals.ai",
-  process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY!,
-  process.env.VAPID_PRIVATE_KEY!
-)
+// Configure VAPID only when environment variables are available
+if (process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY && process.env.VAPID_PRIVATE_KEY) {
+  webpush.setVapidDetails(
+    "mailto:support@promeals.ai",
+    process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY,
+    process.env.VAPID_PRIVATE_KEY
+  )
+}
 
 export async function POST(request: Request) {
   try {
@@ -104,6 +106,14 @@ export async function POST(request: Request) {
           icon: "/icons/icon-192x192.png",
           tag: "test",
         }
+    }
+
+    // Check if VAPID keys are configured before sending notification
+    if (!process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY || !process.env.VAPID_PRIVATE_KEY) {
+      return NextResponse.json(
+        { error: "Push notifications are not configured" },
+        { status: 500 }
+      )
     }
 
     await webpush.sendNotification(
